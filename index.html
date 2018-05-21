@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+   <!-- Library CSS Files -->
+   <link href="css/angular.treeview.css" rel="stylesheet">
+   <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" type="text/css" />
+   <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" type="text/css" />
+   <link rel="stylesheet" href="css/bubble-tree.css" media="screen" type="text/css" />
+   <!-- Library Scripts Files -->
+   <script src='lib/jquery.js' type='text/javascript'></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="lib/angular.min.js"></script>
+   <script src="lib/bootstrap.min.js" type="text/javascript"></script>
+   <script src="lib/bootstrap-tabcollapse.js" type="text/javascript"></script>
+   <script src="lib/ng-pattern-restrict.js" type="text/javascript"></script>
+   <script src="lib/pubnub-3.15.1.min.js"></script>
+   <script src="lib/pubnub-angular-3.2.1.min.js"></script>
+   <script src="lib/d3.v3.min.js"></script>
+   <script src="lib/ui-bootstrap-tpls-2.5.0.js"></script>
+   <script src="lib/ngDrag.js"></script>
+   <script src="lib/underscore-1.4.4-min.js"></script>
+   <!-- <script src="lib/angular.treeview.js"></script> -->
+   <!-- <script src="lib/angular.treeview.min.js"></script> -->
+   <!-- Custom Script & CSS Files -->
+   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+   <link rel="stylesheet" href="css/bubble-tree.css" />
+   <script src="js/app.js"></script>
+   <!-- <script src="js/bubble-tree.js"></script> -->
+   <script src="js/bubble-tree.json" type="application/json"></script>
+   <head>
+      <title>RAWKUL</title>
+   </head>
+   <body>
+      <div ng-app="app" ng-controller="myCtrl">
+      <header class="{{header}}">
+         <div class="container-fluid">
+            <h1>Rawkul</h1>
+         </div>
+      </header>
+      <section class="top-search">
+         <div class="container-fluid">
+            <form class="search-form" name="searchForm" novalidate>
+               <div class="search-field">
+                  <span class="input-fill">
+                  <input type="text" uib-typeahead="item for item in getSearch(searchParam)" typeahead-focus-first="true" typeahead-wait-ms="1000" typeahead-min-length="2" typeahead-on-select="onSearchSelect(searchParam)" autofocus placeholder="Application Id" ng-model="searchParam" typeahead-no-results="noResults" ng-pattern-restrict="^[A-Za-z0-9, ]*$" required />
+                  </span>
+                  <span class="b-search">
+                  <button type="submit" ng-disabled="searchForm.$invalid" ng-click="getSearchResults(searchParam)">
+                  <i class="fa fa-search"></i></button>
+                  <button class="btn btn-primary microphone" type="button" ng-click="dictateIt()" value="" data-toggle="tooltip" data-placement="bottom" title="Search by Voice"><i class="fa fa-microphone" ></i></button>
+                  </span>
+                  <p ng-show="error">{{errorMessage}}</p>
+               </div>
+            </form>
+         </div>
+      </section>
+      <div class="main-tabs">
+         <div class="container-fluid">
+            <div class="tab-content">
+               <div class="tab-pane fade in active" id="tab1">
+                  <section class="second-part-tabs" ng-show="labels">
+                     <div class="container-fluid">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                           <div class="col-md-2" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+                              <ul class="nav nav-tabs content-tabs" id="maincontent" role="tablist" ng-show="showIds">
+                                 <li class="{{iD.classValue}} tabClass{{$index}}"" id={{iD.id}} ng-repeat="iD in idArray track by $index"><a ng-click="getIdDetails(iD.id)" href="#tab1" role="tab" data-toggle="tab"><span>{{iD.id}}</span></a><i class="fa fa-close" ng-click="removeAppId(iD,iD.id)"></i></li>
+                              </ul>
+                           </div>
+                           <div class="jumbotron col-md-10" ng-show="showContent">
+                              <div class="tabs-concept">
+                                 <ul id="tabs" role="tablist">
+                                    <li id="current"><a href="#application_title" name="tab1" role="tab" data-toggle="tab">Overview</a></li>
+                                    <li id=""><a href="#similarapplications" name="tab2" role="tab" data-toggle="tab">Similar applications</a></li>
+                                    <li id=""><a href="#claims" name="tab2" role="tab" data-toggle="tab">Claims</a></li>
+                                    <li id=""><a href="#feature_invention" name="tab3" role="tab" data-toggle="tab">Novelty</a></li>
+                                    <li id=""><a href="#market_sense" name="tab4" role="tab" data-toggle="tab">Market sense</a></li>
+                                 </ul>
+                                 <div class="tab-content" id="content">
+                                    <div class="tab-pane fade in active" id="application_title">
+                                       <form class="form-horizontal detail-form">
+                                          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Title</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.Title}}</p>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Inventor</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.Ultimate_Parent}}</p>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Domain</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.Art_Unit_Description}}</p>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Assignee</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.Assignee}}</p>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Filing date</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.Priority_Date}}</p>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>US Classifications</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.All_US_Classifications}}</p>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>IP Classification</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.All_IP_Classifications}}</p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                             <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Abstract</b></label>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                   <p>{{searchData.Abstract}}</p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="similarapplications">
+                                       <form class="form-horizontal detail-form">
+                                          <div class="form-group" ng-if="searchData.classification == 'null'">
+                                             <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Similar applications</b></label>
+                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <p>No Similar Application Ids.</p>
+                                             </div>
+                                          </div>
+                                          <div class="form-group" ng-if="searchData.classification != 'null'">
+                                             <label class="control-label col-xs-12 col-sm-4 col-md-4 col-lg-4"><b>Similar applications</b></label>
+                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                <p ng-repeat="id in searchData.classification track by $index" ng-drag="true" ng-drag-data="id" data-allow-transform="true"><button><span>{{id.Publication_Number}}</button></p>
+                                             </div>
+										  </div>
+                                       </form>
+                                     </div>
+                                       <div class="tab-pane fade" id="claims">
+                                          <form class="form-horizontal detail-form">
+                                             <div class="top-sec-claims">
+                                                <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                   <label class="control-label col-xs-12 col-sm-9 col-md-9 col-lg-9"><b>Number of claims:</b></label>
+                                                   <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                                      <p>{{searchData.Number_of_Claims}}</p>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                   <label class="control-label col-xs-12 col-sm-9 col-md-9 col-lg-9"><b>Number of backward citations:</b></label>
+                                                   <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                                      <p>{{searchData.Number_of_Backward_Citations}}</p>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                   <label class="control-label col-xs-12 col-sm-9 col-md-9 col-lg-9"><b>Number of forward citations:</b></label>
+                                                   <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                                      <p>{{searchData.Number_of_Forward_Citations}}</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label"><b>First claim</b></label>
+                                                <p>{{searchData.First_Claim}}</p>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="control-label">
+                                                   <h4><b>Independent claims</b></h4>
+                                                </label>
+                                                <div ng-if="searchData.Independent_Claim_A!=null">
+                                                   <label class="control-label">Independent claim A</label>
+                                                   <p>{{searchData.Independent_Claim_A}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_B!=null">
+                                                   <label class="control-label">Independent claim B</label>
+                                                   <p>{{searchData.Independent_Claim_B}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_C!=null">
+                                                   <label class="control-label">Independent claim C</label>
+                                                   <p>{{searchData.Independent_Claim_C}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_D!=null">
+                                                   <label class="control-label">Independent claim D</label>
+                                                   <p>{{searchData.Independent_Claim_D}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_E!=null">
+                                                   <label class="control-label">Independent claim E</label>
+                                                   <p>{{searchData.Independent_Claim_E}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_F!=null">
+                                                   <label class="control-label">Independent claim F</label>
+                                                   <p>{{searchData.Independent_Claim_F}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_G!=null">
+                                                   <label class="control-label">Independent claim G</label>
+                                                   <p>{{searchData.Independent_Claim_G}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_H!=null">
+                                                   <label class="control-label">Independent claim H</label>
+                                                   <p>{{searchData.Independent_Claim_H}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_I!=null">
+                                                   <label class="control-label">Independent claim I</label>
+                                                   <p>{{searchData.Independent_Claim_I}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_J!=null">
+                                                   <label class="control-label">Independent claim J</label>
+                                                   <p>{{searchData.Independent_Claim_J}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_K!=null">
+                                                   <label class="control-label">Independent claim K</label>
+                                                   <p>{{searchData.Independent_Claim_K}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_L!=null">
+                                                   <label class="control-label">Independent claim L</label>
+                                                   <p>{{searchData.Independent_Claim_L}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_M!=null">
+                                                   <label class="control-label">Independent claim M</label>
+                                                   <p>{{searchData.Independent_Claim_M}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_N!=null">
+                                                   <label class="control-label">Independent claim N</label>
+                                                   <p>{{searchData.Independent_Claim_N}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_O!=null">
+                                                   <label class="control-label">Independent claim O</label>
+                                                   <p>{{searchData.Independent_Claim_O}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_P!=null">
+                                                   <label class="control-label">Independent claim P</label>
+                                                   <p>{{searchData.Independent_Claim_P}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_Q!=null">
+                                                   <label class="control-label">Independent claim Q</label>
+                                                   <p>{{searchData.Independent_Claim_Q}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_R!=null">
+                                                   <label class="control-label">Independent claim R</label>
+                                                   <p>{{searchData.Independent_Claim_R}}</p>
+                                                </div>
+                                                <div ng-if="searchData.Independent_Claim_S!=null">
+                                                   <label class="control-label">Independent claim S</label>
+                                                   <p>{{searchData.Independent_Claim_S}}</p>
+                                                </div>
+                                             </div>
+                                          </form>
+                                       </div>
+                                       <div class="tab-pane fade" id="feature_invention">
+                                          <h4>Novelty</h4>
+                                       </div>
+                                       <div class="tab-pane fade" id="market_sense">
+                                          <form class="form-horizontal detail-form">
+                                             <figure id="treeview"></figure>
+                                          </form>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <section class="second-part-tabs" ng-show="noDetails">
+                                 <div class="container-fluid">
+                                    <div class="jumbotron">
+                                       <h2 class="nodata">{{message}}</h2>
+                                    </div>
+                                 </div>
+                              </section>
+                           </div>
+                        </div>
+                  </section>
+                  </div>
+                  <!-- #tab1 -->
+               </div>
+               <!-- .tab-content -->
+            </div>
+            <!-- .container-fluid -->
+         </div>
+         <!-- .main-tabs -->
+      </div>
+      <script>
+         $(document).ready(function(){
+             $('[data-toggle="tooltip"]').tooltip(); 
+         });
+         var m = [20, 120, 20, 120],
+             w = 1280 - m[1] - m[3],
+             h = 800 - m[0] - m[2],
+             i = 0,
+             root;
+         var tree = d3.layout.cluster()
+             .size([h, w])
+             .separation(function separation(a, b) {
+                 return a.parent == b.parent ? 1 : 1;
+             });
+         
+         var diagonal = d3.svg.diagonal()
+             .projection(function(d) {
+                 return [d.y, d.x];
+             });
+         
+         var vis = d3.select("#treeview").append("svg:svg")
+             .attr("width", w + m[1] + m[3])
+             .attr("height", h + m[0] + m[2])
+             .append("svg:g")
+             .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+         
+         // bubble plot variables
+         var plot_offset = 300;
+         var radius = null;
+         var samples = 4;
+         var sample_names = [];
+         var trans = 0.5;
+         var colors = ["red", "blue", "green", "orange", "purple"];
+         
+         // pie stuff
+         var arc = d3.svg.arc()
+             .outerRadius(radius * 0.8)
+             .innerRadius(radius * 0.4);
+         
+         var outerArc = d3.svg.arc()
+             .innerRadius(radius * 0.9)
+             .outerRadius(radius * 0.9);
+         
+         var pie = d3.layout.pie()
+             .sort(null)
+             .value(function(d) {
+                 return d.value;
+             });
+         
+         
+         
+         // quick crawl of tree to load sample_names
+         // variable
+         function initializeSampleNames(d) {
+             if (d.values) {
+                 if (sample_names.length == 0) {
+                     for (var sample_name in d.values) {
+                         sample_names.push(sample_name);
+                     }
+                 }
+             }
+             if (d.children) {
+                 for (var i = 0; i < d.children.length; i++) {
+                     initializeSampleNames(d.children[i]);
+                 }
+             } else if (d._children) {
+                 for (var i = 0; i < d._children.length; i++) {
+                     initializeSampleNames(d._children[i]);
+                 }
+             }
+         }
+         
+         d3.json("js/bubble-tree-colors.json", function(json) {
+             root = json;
+             root.x0 = h / 2;
+             root.y0 = 0;
+         
+             // set full node status of all nodes
+             function toggleAll(d) {
+                 if (d.children) {
+                     d.children.forEach(toggleAll);
+                     toggle(d);
+                 }
+             }
+         
+             // sets leaf status of all nodes to false
+             initializeLeaves(root);
+             root._leaf = true;
+         
+             // Initialize the display to show a few nodes.
+             root.children.forEach(toggleAll);
+             initializeSampleNames(root);
+         
+             // Set max bubble size to max samples
+             max_size = 0
+             for (var i = 0; i < sample_names.length; i++) {
+                 var sample_sum = sumCountsBySample2(root, sample_names[i]);
+                 if (sample_sum > max_size) {
+                     max_size = sample_sum;
+                 }
+             }
+         
+             radius = d3.scale.sqrt()
+                 .domain([0, max_size])
+                 .range([0, 30]);
+         
+             var legend = vis.append("g")
+                 .attr("class", "legend value")
+                 .attr("transform", "translate(" + (0) + "," + (50) + ")")
+                 .selectAll("g")
+                 .data([Math.round(max_size), Math.round(max_size / 2), Math.round(max_size / 4)])
+                 .enter().append("g");
+         
+             legend.append("circle")
+                 .attr("cy", function(d) {
+                     return -radius(d);
+                 })
+                 .attr("r", radius);
+         
+             legend.append("text")
+                 .attr("y", function(d) {
+                     return -2 * radius(d);
+                 })
+                 .attr("dy", "1.2em")
+                 .text(d3.format(".1s"));
+         
+             var color_legend = vis.append("g")
+                 .attr("class", "legend")
+                 .attr("transform", "translate(" + (0) + "," + (70) + ")")
+                 .selectAll("g")
+                 .data(sample_names)
+                 .enter().append("g");
+         
+             color_legend.append("circle")
+                 .attr("cy", function(d, i) {
+                     return i * 20;
+                 })
+                 .attr("r", 8)
+                 .style("fill", function(d, i) {
+                     return colors[i];
+                 })
+                 .attr("opacity", trans);
+             color_legend.append("text")
+                 .attr("y", function(d, i) {
+                     return i * 20;
+                 })
+                 .attr("dy", 4)
+                 .attr("x", 40)
+                 .text(function(d, i) {
+                     return d
+                 });
+         
+             toggle(root);
+             update(root);
+         
+         });
+         
+         function getChildrenNames(parent) {
+             children = parent.children;
+             for (i = 0; i < children.length; i++) {
+                 // alert(children[i]["size"]);
+             }
+         }
+         
+         function update(source) {
+             var duration = d3.event && d3.event.altKey ? 5000 : 500;
+         
+             // Compute the new tree layout.
+             var nodes = tree.nodes(root).reverse();
+         
+             // Normalize for fixed-depth.
+             nodes.forEach(function(d) {
+                 d.y = d.depth * 250;
+             });
+         
+             // Update the nodes…
+             var node = vis.selectAll("g.node")
+                 .data(nodes, function(d) {
+                     return d.id || (d.id = ++i);
+                 });
+         
+             // Enter any new nodes at the parent's previous position.
+             var nodeEnter = node.enter().append("svg:g")
+                 .attr("class", "node")
+                 .attr("transform", function(d) {
+                     return "translate(" + source.y0 + "," + source.x0 + ")";
+                 })
+                 //.on("click", function(d) { toggle(d); update(d); });
+                 .on("click", function(d) {
+                     update_leaf(d);
+                     toggle(d);
+                     update(d);
+                 });
+         
+             nodeEnter.append("svg:circle")
+                 .attr("r", 1e-6)
+                 .attr("class", "node_circle")
+                 .style("fill", function(d) {
+                     return d._children ? "lightsteelblue" : "#fff";
+                 });
+         
+             //create_slices(nodeEnter);
+         
+             nodeEnter.append("svg:text")
+                 .attr("x", function(d) {
+                     return d.children || d._children ? -10 : -10;
+                 })
+                 .attr("y", 12)
+                 .attr("dy", ".35em")
+                 .attr("text-anchor", function(d) {
+                     return d.children || d._children ? "end" : "end";
+                 })
+                 .text(function(d) {
+                     return d.name;
+                 })
+                 .style("fill-opacity", 1e-6);
+         
+             // circle that appears when leaf
+             create_leaf_nodes(nodeEnter);
+         
+             // Transition nodes to their new position.
+             var nodeUpdate = node.transition()
+                 .duration(duration)
+                 .attr("transform", function(d) {
+                     return "translate(" + d.y + "," + d.x + ")";
+                 });
+         
+             // update leaf nodes with colors
+             update_leaf_nodes(nodeUpdate);
+         
+             nodeUpdate.select("circle.node_circle")
+                 .attr("r", function(d) {
+                     return 6;
+                 })
+                 .style("fill", function(d) {
+                     return d._children ? "#CECECE" : "#fff";
+                 });
+         
+             nodeUpdate.select("text")
+                 .style("fill-opacity", 1);
+         
+             // Transition exiting nodes to the parent's new position.
+             var nodeExit = node.exit().transition()
+                 .duration(duration)
+                 .attr("transform", function(d) {
+                     return "translate(" + source.y + "," + source.x + ")";
+                 })
+                 .remove();
+         
+             nodeExit.select("circle")
+                 .attr("r", 1e-6);
+             nodeExit.select("text")
+                 .style("fill-opacity", 1e-6);
+             nodeExit.select(".leaf")
+                 .style("r", 1e-6)
+                 .attr("opacity", 0);
+         
+             // Update the links…
+             var link = vis.selectAll("path.link")
+                 .data(tree.links(nodes), function(d) {
+                     return d.target.id;
+                 });
+         
+             // Enter any new links at the parent's previous position.
+             link.enter().insert("svg:path", "g")
+                 .attr("class", "link")
+                 .attr("d", function(d) {
+                     var o = {
+                         x: source.x0,
+                         y: source.y0
+                     };
+                     return diagonal({
+                         source: o,
+                         target: o
+                     });
+                 })
+                 .transition()
+                 .duration(duration)
+                 .attr("d", diagonal);
+         
+             // Transition links to their new position.
+             link.transition()
+                 .duration(duration)
+                 .attr("d", diagonal);
+         
+             // Transition exiting nodes to the parent's new position.
+             link.exit().transition()
+                 .duration(duration)
+                 .attr("d", function(d) {
+                     var o = {
+                         x: source.x,
+                         y: source.y
+                     };
+                     return diagonal({
+                         source: o,
+                         target: o
+                     });
+                 })
+                 .remove();
+         
+             // Stash the old positions for transition.
+             nodes.forEach(function(d) {
+                 d.x0 = d.x;
+                 d.y0 = d.y;
+             });
+         }
+         
+         // Toggle children.
+         function toggle(d) {
+             if (d.children) {
+                 // hide children
+                 d._children = d.children;
+                 d.children = null;
+             } else {
+                 // show children
+                 d.children = d._children;
+                 d._children = null;
+             }
+         }
+         
+         // Update leaf status of children on click
+         function set_children_leaves(d) {
+             // update leaf status
+             if (d.children) {
+                 children = d.children;
+             } else if (d._children) {
+                 children = d._children;
+             }
+             for (i = 0; i < children.length; i++) {
+                 // alert("leaf " + children[i]["name"]);
+                 children[i]._leaf = true;
+             }
+         }
+         
+         function update_leaf(d) {
+             if (d._leaf) {
+                 // if currently a leaf, expand and make children leaves
+                 d._leaf = false;
+         
+                 if (d.children) {
+                     d.children.forEach(function(d) {
+                         d._leaf = true;
+                     });
+                 } else if (d._children) {
+                     d._children.forEach(function(d) {
+                         d._leaf = true;
+                     });
+                 }
+             } else {
+                 // if not a leaf, collapsing up traverse all setting leaves to false
+                 d._leaf = true;
+                 if (d.children) {
+                     d.children.forEach(initializeLeaves);
+                 } else if (d._children) {
+                     d._children.forEach(initializeLeaves);
+                 }
+             }
+         }
+         
+         // sets current leaf and all children leaves to false
+         function initializeLeaves(d) {
+             d._leaf = false;
+             if (d.children) {
+                 d.children.forEach(initializeLeaves);
+             } else if (d._children) {
+                 d._children.forEach(initializeLeaves);
+             }
+         }
+         
+         function sumCountsBySample2(d, sample) {
+             if (d.children) {
+                 var sum = 0;
+                 for (var i = 0; i < d.children.length; i++) {
+                     var value = sumCountsBySample2(d.children[i], sample);
+                     sum += value;
+                 }
+                 if (d.values) {
+                     var value = parseFloat(d.values[sample]);
+                     sum += value;
+                 }
+                 return (sum);
+             } else if (d._children) {
+                 var sum = 0;
+                 for (var i = 0; i < d._children.length; i++) {
+                     var value = sumCountsBySample2(d._children[i], sample);
+                     sum += value;
+                 }
+                 if (d.values) {
+                     var value = parseFloat(d.values[sample]);
+                     sum += value;
+                 }
+                 return (sum);
+             } else {
+                 if (d.values) {
+                     var value = parseFloat(d.values[sample]);
+                     return (value);
+                 }
+             }
+         }
+         
+         function hideChildren(d) {
+             if (d.children) {
+                 d._children = d.children;
+                 d.children.forEach(hideChildren)
+                 d.children = null;
+             }
+         }
+         
+         // Toggle leaf status of node
+         function toggle_leaf(d) {
+             if (d._leaf) {
+                 d._leaf = false;
+             } else {
+                 d._leaf = true;
+             }
+         }
+         
+         function create_leaf_nodes(nodeEnter) {
+             for (itr2 = 0; itr2 < samples; itr2++) {
+                 nodeEnter.append("svg:circle")
+         		.attr("class", "leaf")
+         		.attr("cx", (itr2 + 1) * 30)
+         		.attr("r", 1e-6)
+         		.attr("opacity", 0)
+         		.style("fill", function(d) {
+         			return d._leaf ? colors[itr2] : "#fff";
+         		});
+             }
+             console.log()
+         }
+         
+         function update_leaf_nodes(nodeUpdate) {
+             console.log("In update_leaf_nodes");
+             leaf_circles = nodeUpdate.selectAll("circle.leaf")
+         	.transition()
+         	.attr("r", function(d, i) {
+         		//alert(sample_names[i]);
+         		value = sumCountsBySample2(d, sample_names[i]);
+         		return (radius(value));
+         	})
+             .attr("opacity", function(d, i) {
+         		if (d._leaf) {
+         			return (trans);
+         		} else {
+         			return (0);
+         		}
+         	});
+         }
+         
+         $(document).ready(function() {
+             $("#content").find("[id^='tab']").hide(); // Hide all content
+             $("#tabs li:first").attr("id","current"); // Activate the first tab
+             $("#content #tab1").fadeIn(); // Show first tab's content
+             
+             $('#tabs a').click(function(e) {
+                 e.preventDefault();
+                 if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+                  return;       
+                 }
+                 else{             
+                   $("#content").find("[id^='tab']").hide(); // Hide all content
+                   $("#tabs li").attr("id",""); //Reset id's
+                   $(this).parent().attr("id","current"); // Activate this
+                   $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+                 }
+             });
+         });
+      </script>
+   </body>
+</html>

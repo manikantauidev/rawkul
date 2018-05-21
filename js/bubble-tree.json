@@ -1,0 +1,196 @@
+{
+    "name": "Domains",
+    "children": [
+        {
+            "name": "Google",
+            "children": [
+                {
+				"name": "Web-based products",
+				"children": [
+						{
+						"name": "Search tools",
+						"children": [
+							{
+								"name": "Google Search",
+								"children": []
+							},
+							{
+								"name": "Google Alerts",
+								"children": []
+							},
+							{
+								"name": "Google Books",
+								"children": []
+							}
+                        ]
+						},
+						{
+						"name": "Advertising Services",
+						"children": []
+						},
+						{
+						"name": "Communication and publishing tools",
+						"children": []
+						}
+					]
+                },
+				{
+                    "name": "Development tools",
+                    "children": [
+						{
+                            "name": "Map-related products",
+							"children": [
+								{
+									"name": "Google Maps",
+									"children": [
+										{
+											"name": "Google Street View",
+											"children": []
+										},
+										{
+											"name": "Google Street View Inside Trusted",
+											"children": []
+										}
+									]
+								}
+							]
+                        },
+						{
+                            "name": "Security Tools",
+                            "children":[]
+                        },
+                        {
+                            "name": "Stastical Tools",
+                            "children":[]
+                        }
+					]
+				}
+            ]
+        },
+		{
+			"name": "Oracle",
+			"children": [
+				{
+					"name": "ATG",
+					"children": [
+						{
+							"name": "ATG Web Commerce",
+							"children": []
+						},
+						{
+							"name": "ATG Web Commerce Merchandizing",
+							"children": []
+						},
+						{
+							"name": "ATG Web Commerce Customer Service",
+							"children": []
+						},
+						{
+							"name": "ATG Web Commerce Service Center",
+							"children": []
+						}
+					]
+				},
+				{
+					"name": "AGILE",
+					"children": [
+						{
+							"name": "Agile Product Lifecycle Management",
+							"children": []
+						},
+						{
+							"name": "Agile Product Lifecycle Management for Process",
+							"children": []
+						}
+					]
+				},
+				{
+					"name": "ORACLE POLICY AUTOMATION",
+					"children": [
+						{
+							"name": "Oracle Policy Automation Connector for Siebel CRM",
+							"children": []
+						},
+						{
+							"name": "Oracle Policy Automation Runtime",
+							"children": []
+						},
+						{
+							"name": "Oracle Policy for Mobile Devices",
+							"children": []
+						},
+						{
+							"name": "Oracle Policy Modeling",
+							"children": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Microsoft",
+			"children": [
+				{
+					"name": "Software development",
+					"children": [
+						{
+							"name": "Windows",
+							"children": [
+								{
+									"name": "Windows 10",
+									"children": []
+								},
+								{
+									"name": "Windows 10 Mobile",
+									"children": []
+								},
+								{
+									"name": "Windows XP",
+									"children": []
+								},
+								{
+									"name": "Windows 8",
+									"children": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Office",
+					"children": [
+						{
+							"name": "Office for Home",
+							"children": []
+						},
+						{
+							"name": "Office for Bussiness",
+							"children": []
+						}
+					]
+				},
+				{
+					"name": "Email & Communications",
+					"children": [
+						{
+							"name": "Outlook",
+							"children": []
+						},
+						{
+							"name": "Skype",
+							"children": []
+						},
+						{
+							"name": "Mail app for Windows 10",
+							"children": []
+						},
+						{
+							"name": "Oracle Policy Modeling",
+							"children": []
+						}
+					]
+				}
+			]
+		}
+    ]
+}

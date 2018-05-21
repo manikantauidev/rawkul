@@ -1,0 +1,748 @@
+{
+  "name": "RDBMS",
+  "children": [
+    {
+      "name": "Oracle",
+      "children": [
+        {
+          "name": "ATG",
+          "children": [
+            {
+              "name": "ATG Web Commerce",
+              "children": [],
+              "values": {
+                "Level 1": "1",
+                "Level 2": "2",
+                "Level 3": "3",
+                "Level 4": "4"
+              }
+            },
+            {
+              "name": "ATG Web Commerce Merchandizing",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "ATG Web Commerce Customer Service",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "ATG Web Commerce Service Center",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "AGILE",
+          "children": [
+            {
+              "name": "Agile Product Lifecycle Management",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Agile Product Lifecycle Management for Process",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ORACLE POLICY AUTOMATION",
+          "children": [
+            {
+              "name": "Oracle Policy Automation Connector for Siebel CRM",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Oracle Policy Automation Runtime",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Oracle Policy for Mobile Devices",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Oracle Policy Modeling",
+              "children": [
+                {
+                  "values": {
+                    "Level 1": "1",
+                    "Level 2": "2",
+                    "Level 3": "3",
+                    "Level 4": "4"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Google",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "30"
+          },
+          "name": "Web-based products",
+          "children": [
+            {
+              "name": "Search tools",
+              "children": [
+                {
+                  "name": "Google Search",
+                  "children": []
+                },
+                {
+                  "name": "Google Alerts",
+                  "children": []
+                },
+                {
+                  "name": "Google Books",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Advertising Services",
+              "children": []
+            },
+            {
+              "name": "Communication and publishing tools",
+              "children": []
+            }
+          ]
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Development tools"
+        }
+      ]
+    },
+    {
+      "name": "Microsoft",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Software development",
+          "children": [
+            {
+              "name": "Windows",
+              "children": [
+                {
+                  "name": "Windows 10",
+                  "children": []
+                },
+                {
+                  "name": "Windows 10 Mobile",
+                  "children": []
+                },
+                {
+                  "name": "Windows XP",
+                  "children": []
+                },
+                {
+                  "name": "Windows 8",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Office",
+          "children": [
+            {
+              "name": "Office for Home",
+              "children": []
+            },
+            {
+              "name": "Office for Bussiness",
+              "children": []
+            }
+          ]
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Email & Communication",
+          "children": [
+            {
+              "name": "Outlook",
+              "children": []
+            },
+            {
+              "name": "Skype",
+              "children": []
+            },
+            {
+              "name": "Mail app for Windows 10",
+              "children": []
+            },
+            {
+              "name": "Oracle Policy Modeling",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IBM",
+      "children": [
+        {
+          "name": "Storage",
+          "children": [
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "5",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": "Cloud"
+            },
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "5",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": "Storage-Area Network"
+            },
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "0",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": "Software-Defined Storage"
+            }
+          ]
+        },
+        {
+          "name": "Software",
+          "children": [
+            {
+              "name": "IBM Cognos Analytics",
+              "children": []
+            },
+            {
+              "name": "IBM SPSS",
+              "children": []
+            },
+            {
+              "name": "IBM Maximo Asset Management",
+              "children": []
+            },
+            {
+              "name": "DB2",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Services",
+          "children": [
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "7",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": "Global Business Services"
+            },
+            {
+              "name": "Global Technology Services",
+              "children": []
+            }
+          ]
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "8",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Cloud"
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "16",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Cognitive offerings"
+        }
+      ]
+    },
+    {
+      "name": "Apache Software Foundation",
+      "children": [
+        {
+          "name": "Apache NET Ant Library",
+          "children": []
+        },
+        {
+          "name": "Apache Abdera (in the Attic)",
+          "children": [
+            {
+              "name": "IBM Cognos Analytics",
+              "children": []
+            },
+            {
+              "name": "IBM SPSS",
+              "children": []
+            },
+            {
+              "name": "IBM Maximo Asset Management",
+              "children": []
+            },
+            {
+              "name": "DB2",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Apache Accumulo",
+          "children": [
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "7",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": "Global Business Services"
+            },
+            {
+              "name": "Global Technology Services",
+              "children": []
+            }
+          ]
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "8",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Apache Anakia"
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "16",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Apache Airavata"
+        }
+      ]
+    },
+    {
+      "name": "Amazon",
+      "children": [
+        {
+          "name": "Retail goods",
+          "children": [
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "5",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": ""
+            },
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "5",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": ""
+            },
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "0",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Amazon Prime",
+          "children": [
+            {
+              "name": "IBM Cognos Analytics",
+              "children": []
+            },
+            {
+              "name": "IBM SPSS",
+              "children": []
+            },
+            {
+              "name": "IBM Maximo Asset Management",
+              "children": []
+            },
+            {
+              "name": "DB2",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Consumer electronics",
+          "children": [
+            {
+              "values": {
+                "Level 1": "0",
+                "Level 2": "7",
+                "Level 3": "0",
+                "Level 4": "0"
+              },
+              "name": "Global Business Services"
+            },
+            {
+              "name": "Global Technology Services",
+              "children": []
+            }
+          ]
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "8",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Amazon Art"
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "16",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Amazon Web Services"
+        }
+      ]
+    },
+    {
+      "name": "PostgreSQL Global Development Group",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Administration/development tools",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Applications",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Clustering/replication",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Drivers & interfaces",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "PostgreSQL extensions",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Reporting Tools",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Dwayne Richard Hipp",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "SQLite",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "CVSTrac",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "HTML Widget",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Teradata",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Analytics",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Cloud",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Data Ingestion",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "MariaDB Corporation Ab (MariaDB Enterprise)",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "MariaDB Server",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "MariaDB ColumnStore",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "MariaDB Foundation (community MariaDB Server)",
+      "children": [
+        {
+          "values": {
+            "Level 1": "1",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "InnoDB",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          },
+          "name": "Encryption",
+          "children": []
+        },
+        {
+          "values": {
+            "Level 1": "0",
+            "Level 2": "0",
+            "Level 3": "0",
+            "Level 4": "0"
+          }
+        }
+      ]
+    }
+  ]
+}
